@@ -875,6 +875,7 @@ namespace XIVComboPlugin
                     }
 
                     if (SearchBuffArray(1235)) return RDM.Verstone;
+                    if (SearchBuffArray(1234)) return RDM.Verfire; //Do opposite 
 
                     if (level < 62) return RDM.Jolt;
                     return RDM.Jolt2;
@@ -891,6 +892,7 @@ namespace XIVComboPlugin
                     }
 
                     if (SearchBuffArray(1234)) return RDM.Verfire;
+                    if (SearchBuffArray(1235)) return RDM.Verstone; //Do opposite 
                     if (level < 62) return RDM.Jolt;
                     return RDM.Jolt2;
                 }
