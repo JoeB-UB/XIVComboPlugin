@@ -835,6 +835,29 @@ namespace XIVComboPlugin
                     }
                     return iconHook.Original(self, RDM.Verthunder2);
                 }
+
+                if (actionID == RDM.Impact || actionID == RDM.Scatter) //Single Button Jolt
+                {
+                    var gauge = XIVComboPlugin.JobGauges.Get<RDMGauge>();
+                    if (gauge.BlackMana >= gauge.WhiteMana)
+                    {
+                        if (SearchBuffArray(167) || SearchBuffArray(1249) || SearchBuffArray(1238))
+                        {
+                            if (level >= 66) return RDM.Impact;
+                            return RDM.Scatter;
+                        }
+                        return iconHook.Original(self, RDM.Veraero2);
+                    }
+                    if (gauge.BlackMana < gauge.WhiteMana)
+                    {
+                        if (SearchBuffArray(167) || SearchBuffArray(1249) || SearchBuffArray(1238))
+                        {
+                            if (level >= 66) return RDM.Impact;
+                            return RDM.Scatter;
+                        }
+                        return iconHook.Original(self, RDM.Verthunder2);
+                    }
+                }
             }
 
             // Replace Redoublement with Redoublement combo, Enchanted if possible.
@@ -895,6 +918,43 @@ namespace XIVComboPlugin
                     if (SearchBuffArray(1235)) return RDM.Verstone; //Do opposite 
                     if (level < 62) return RDM.Jolt;
                     return RDM.Jolt2;
+                }
+                if (actionID == RDM.Jolt || actionID == RDM.Jolt2) //Single Button Jolt
+                {
+                    var gauge = XIVComboPlugin.JobGauges.Get<RDMGauge>();
+                    if (gauge.BlackMana >= gauge.WhiteMana)
+                    {
+                        if (level >= 80 && (lastMove == RDM.Verflare || lastMove == RDM.Verholy)) return RDM.Scorch;
+                        if (level >= 90 && lastMove == RDM.Scorch) return RDM.Resolution;
+
+                        if (SearchBuffArray(167) || SearchBuffArray(1249) || SearchBuffArray(1238))
+                        {
+                            if (level >= 82) return RDM.Veraero3;
+                            return RDM.Veraero;
+                        }
+
+                        if (SearchBuffArray(1235)) return RDM.Verstone;
+                        if (SearchBuffArray(1234)) return RDM.Verfire; //Do opposite 
+
+                        if (level < 62) return RDM.Jolt;
+                        return RDM.Jolt2;
+                    }
+                    if (gauge.BlackMana < gauge.WhiteMana)
+                    {
+                        if (level >= 80 && (lastMove == RDM.Verflare || lastMove == RDM.Verholy)) return RDM.Scorch;
+                        if (level >= 90 && lastMove == RDM.Scorch) return RDM.Resolution;
+
+                        if (SearchBuffArray(167) || SearchBuffArray(1249) || SearchBuffArray(1238))
+                        {
+                            if (level >= 82) return RDM.Verthunder3;
+                            return RDM.Verthunder;
+                        }
+
+                        if (SearchBuffArray(1234)) return RDM.Verfire;
+                        if (SearchBuffArray(1235)) return RDM.Verstone; //Do opposite 
+                        if (level < 62) return RDM.Jolt;
+                        return RDM.Jolt2;
+                    }
                 }
             }
 
